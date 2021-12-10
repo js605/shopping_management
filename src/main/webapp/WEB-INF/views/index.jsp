@@ -13,7 +13,7 @@
 <body>
     <%@include file="/WEB-INF/includes/header.jsp"%>
     <main>
-        <h1>쇼핑몰관리 대시보드</h1>
+        <h1>쇼핑몰관리 대시보드 (ShoppingMall Management Dashboard)</h1>
         <div class="content_area">
             <div class="member_info">
                 <h2><i class="fas fa-users"></i> 회원 관리</h2>

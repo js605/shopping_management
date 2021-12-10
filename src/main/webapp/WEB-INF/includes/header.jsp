@@ -22,7 +22,7 @@
                     <span>수정하기</span>
                 </a>
                 <a href="#" id="user_name">관리자(admin)</a>
-                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
             <div class="main_menu">
                 <a href="#"><i class="fas fa-users"></i> 회원 관리</a>

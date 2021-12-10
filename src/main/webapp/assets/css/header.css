@@ -1,9 +1,9 @@
 header {
-    width: 250px; height: 100vh; background-color: #fbfbfb;
-    position: fixed; left: 0; top:0; border-right: 1px solid #eee;
+    width: 250px; height: 100vh; background-color: #ccccccd5;
+    position: fixed; left: 0; top:0; border-right: 1px solid #ccccccd5;
 }
 main{
-    width: calc(100% - 250px); margin-left: 250px;
+    width: calc(100% - 250px); margin-left: 251px;
 }
 .main_menu a {
     display: block;
@@ -40,7 +40,7 @@ main{
 
 #logout {
     width: 130px; padding:10px 0; text-align: center; margin: 10px auto;
-    color: #fff; background-color: rgb(255, 126, 126); text-decoration: none;
+    color: #fff; background-color: rgb(102, 101, 101); text-decoration: none;
     border-radius: 5px; font-size: 14px; font-weight: 700;
 }
-#logout:hover {background-color: rgb(238, 58, 58);}
+#logout:hover {background-color: rgb(32, 32, 32);}
