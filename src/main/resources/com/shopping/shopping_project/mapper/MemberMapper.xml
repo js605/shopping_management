@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.shopping_project.mapper.MemberMapper">
+    <insert id="insertMemberadd">
+        insert into member_info (mi_name, mi_birth, mi_phone_num, mi_id, mi_pwd, mi_status)
+        values (#{mi_name}, #{mi_birth}, #{mi_phone_num}, #{mi_id}, #{mi_pwd}, #{mi_status})
+    </insert>
+</mapper>
