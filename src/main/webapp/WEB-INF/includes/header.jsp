@@ -25,7 +25,8 @@
                 <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
             <div class="main_menu">
-                <a href="#"><i class="fas fa-users"></i> 회원 관리</a>
+                <a href="/"><i class="fas fa-columns"></i> 대시 보드</a>
+                <a href="/member"><i class="fas fa-users"></i> 회원 관리</a>
                 <a href="#"><i class="fas fa-shopping-cart"></i> 상품 관리</a>
                 <a href="#"><i class="fas fa-thumbs-up"></i> 리뷰 관리</a>
                 <a href="#"><i class="far fa-question-circle"></i> 문의 관리</a>

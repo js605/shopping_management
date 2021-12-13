@@ -1,14 +1,14 @@
 /* index.css */
-main {background-color: #e7e7e7d5;}
-main > h1 {font-size: 36px; margin-bottom: 30px; padding-top: 30px; padding-left: 50px;}
+main {background-color: #f3f3f3;}
+main > h1 {font-size: 36px; margin-bottom: 30px;}
 .content_area {font-size: 0; width: 1250px;}
 .content_area > div {
     display: inline-block; vertical-align: top;
-    width: 230px; height: 280px; padding: 30px; position: relative;
-    background-color: #fff; font-size: 16px; margin-left: 20px; margin-bottom: 20px;
+    width: 230px; height: 300px; padding: 30px; position: relative;
+    background-color: #fff; font-size: 16px; margin-left: 20px;
     border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
-.content_area > .member_info {margin-left: 300;}
+.content_area > .member_info {margin-left: 0;}
 .content_area > div h2 {
     font-size: 20px; margin-bottom: 25px; color: #333;
 }

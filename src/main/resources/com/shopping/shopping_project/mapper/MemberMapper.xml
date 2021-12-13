@@ -2,8 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shopping.shopping_project.mapper.MemberMapper">
-    <insert id="insertMemberadd">
+    <insert id="addMember">
         insert into member_info (mi_name, mi_birth, mi_phone_num, mi_id, mi_pwd, mi_status)
         values (#{mi_name}, #{mi_birth}, #{mi_phone_num}, #{mi_id}, #{mi_pwd}, #{mi_status})
     </insert>
+    <select id="getMemberInfo" resultType="com.shopping.shopping_project.data.MemberVO">
+        select * from member_info order by mi_seq desc
+        limit 10 offset #{offset}
+    </select>
+    <select id="getMemberCount" resultType="java.lang.Integer">
+        select count(*) from member_info
+    </select>
+    <delete id="deleteMember">
+        delete from member_info where mi_seq=#{seq}
+    </delete>
 </mapper>
