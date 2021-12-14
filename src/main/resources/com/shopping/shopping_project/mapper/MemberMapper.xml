@@ -7,7 +7,8 @@
         values (#{mi_name}, #{mi_birth}, #{mi_phone_num}, #{mi_id}, #{mi_pwd}, #{mi_status})
     </insert>
     <select id="getMemberInfo" resultType="com.shopping.shopping_project.data.MemberVO">
-        select * from member_info order by mi_seq desc
+        select * from member_info where mi_name like #{keyword}
+        order by mi_seq desc
         limit 10 offset #{offset}
     </select>
     <select id="getMemberCount" resultType="java.lang.Integer">
@@ -16,4 +17,22 @@
     <delete id="deleteMember">
         delete from member_info where mi_seq=#{seq}
     </delete>
+    <select id="getMemberInfoBySeq" resultType="com.shopping.shopping_project.data.MemberVO">
+        select * from member_info where mi_seq=#{seq}
+    </select>
+    <update id="updateMember">
+        update member_info 
+        set mi_name=#{mi_name}, mi_birth=#{mi_birth}, mi_phone_num=#{mi_phone_num}, 
+        mi_id=#{mi_id}, mi_pwd=#{mi_pwd}, mi_mod_dt=NOW()
+        where mi_seq=#{mi_seq}
+    </update>
+    <select id="selectLatestDateSeq" resultType="java.lang.Integer">
+        select mi_seq from member_info 
+        order by mi_seq desc limit 1
+    </select>
+    <update id="insertMemberHistory">
+        INSERT INTO shopping_mall_db.member_history
+        (memh_type, memh_content, memh_mi_seq)
+        VALUES(#{memh_type}, #{memh_content}, #{memh_mi_seq});
+    </update>
 </mapper>

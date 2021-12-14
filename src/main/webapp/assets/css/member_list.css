@@ -79,5 +79,7 @@ font-size: 20px; cursor: pointer}
 }
 .btn_area #add_mem {background-color: #999;}
 .btn_area #add_mem:hover {background-color: #333;}
+.btn_area #modify_mem {background-color: #999;}
+.btn_area #modify_mem:hover {background-color: #333;}
 .btn_area #cancel_mem {background-color: rgb(255, 194, 194);}
 .btn_area #cancel_mem:hover {background-color: rgb(255, 83, 83);}

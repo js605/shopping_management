@@ -18,8 +18,11 @@ public class MemberController {
     @Autowired
     MemberService service;
     @GetMapping("/member")
-    public String getMember(Model model, @RequestParam @Nullable Integer offset) {
-        Map<String, Object> resultMap = service.getMemberList(offset);
+    public String getMember(
+        Model model, @RequestParam @Nullable Integer offset,
+        @RequestParam @Nullable String keyword
+        ) {
+        Map<String, Object> resultMap = service.getMemberList(offset, keyword);
         model.addAttribute("data", resultMap);
 
         return "/member/list";
