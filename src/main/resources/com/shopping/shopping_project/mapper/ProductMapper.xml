@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.shopping_project.mapper.ProductMapper">
+    <insert id="addProductInfo">
+        INSERT INTO shopping_mall_db.product_info
+        (pi_name, pi_ci_seq, pi_sub, pi_price, pi_status, pi_cnt)
+        VALUES
+        (#{pi_name}, #{pi_ci_seq}, #{pi_sub}, #{pi_price}, #{pi_status}, #{pi_cnt});
+    </insert>
+    <select id="getProductList" resultType="com.shopping.shopping_project.data.ProductVO">
+        select pi_seq, category_name, pi_name, pi_sub, pi_price, pi_status, pi_cnt, pi_reg_dt, pi_mod_dt
+        from
+        (
+            select a.*, b.ci_name as category_name
+            from product_info a left outer join category_info b
+            on a.pi_ci_seq = b.ci_seq
+        ) c
+        <if test="type == 'cate'">
+            where category_name like #{keyword}
+        </if>
+        <if test="type == 'name'">
+            where pi_name like #{keyword}
+        </if>
+            order by pi_seq desc
+            limit 10 offset #{offset}
+    </select>
+    <select id="getProductCnt" resultType="java.lang.Integer">
+        select count(*) from (
+            select a.*, b.ci_name as category_name
+            from product_info a left outer join category_info b
+            on a.pi_ci_seq = b.ci_seq
+        ) c
+        <if test="type == 'cate'">
+            where category_name like #{keyword}
+        </if>
+        <if test="type == 'name'">
+            where pi_name like #{keyword}
+        </if>
+    </select>
+    <delete id="deleteProduct">
+        delete from product_info where pi_seq = #{seq}
+    </delete>
+    <update id="updateProduct">
+        update product_info 
+        set pi_ci_seq=#{pi_ci_seq}, pi_name=#{pi_name}, pi_sub=#{pi_sub}, pi_price=#{pi_price}, pi_cnt=#{pi_cnt}, pi_status=#{pi_status}, pi_mod_dt=NOW()
+        where pi_seq=#{pi_seq}
+    </update>
+    <select id="getProductInfoBySeq" resultType="com.shopping.shopping_project.data.ProductVO">
+        select * from product_info where pi_seq = #{seq}
+    </select>
+</mapper>

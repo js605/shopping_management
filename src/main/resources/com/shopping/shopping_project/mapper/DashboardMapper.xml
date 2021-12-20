@@ -22,7 +22,7 @@
         select count(*) from product_info where pi_status=1
     </select>
     <select id="getWaitProductCnt" resultType="java.lang.Integer">
-        select count(*) from product_info where pi_status=0
+        select count(*) from product_info where pi_status=2
     </select>
 
     <select id="getTotalReviewCnt" resultType="java.lang.Integer">

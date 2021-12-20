@@ -32,7 +32,7 @@
                 <h2><i class="fas fa-shopping-cart"></i> 상품 관리</h2>
                 <p>총 상품 수 : <span>${cnt.product[0]}개</span></p>
                 <p>판매 중 상품 : <span>${cnt.product[1]}개</span></p>
-                <p>입고 대기 상품 : <span>${cnt.product[2]}개</span></p>
+                <p>품절 임박 : <span>${cnt.product[2]}개</span></p>
                 <p><i class="far fa-clock"></i> 업데이트 날짜 : <span>2021-12-10 12:00:00</span></p>
             </div>
             <div class="review_info">
