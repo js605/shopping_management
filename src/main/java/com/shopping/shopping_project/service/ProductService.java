@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.shopping.shopping_project.data.CategoryVO;
 import com.shopping.shopping_project.data.ProductVO;
 import com.shopping.shopping_project.mapper.ProductMapper;
 
@@ -94,5 +95,11 @@ public class ProductService {
         resultMap.put("status", true);
         resultMap.put("data", mapper.getProductInfoBySeq(seq));
         return resultMap;
+    }
+
+    public List<CategoryVO> getCategoryName(String keyword) {
+        if(keyword == null) keyword = "%%";
+        else keyword = "%"+keyword+"%";
+        return mapper.getCategoryName(keyword);
     }
 }

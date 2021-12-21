@@ -49,4 +49,7 @@
     <select id="getProductInfoBySeq" resultType="com.shopping.shopping_project.data.ProductVO">
         select * from product_info where pi_seq = #{seq}
     </select>
+    <select id="getCategoryName" resultType="com.shopping.shopping_project.data.CategoryVO">
+        select ci_name from category_info where ci_name like #{keyword}
+    </select>
 </mapper>

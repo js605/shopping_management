@@ -1,10 +1,53 @@
 // teacher.js
 $(function(){
     $(".main_menu a:nth-child(3)").addClass("active");
+    $("#search_cate").click(function(){
+        $(".category_search").css("display", "block");
+    });
+    $("#cate_search_close").click(function(){
+        $(".category_search").css("display", "");
+    });
+    $("#cate_keyword").keyup(function(e){
+        if(e.keyCode == 13) $("#cate_search_btn").trigger("click");
+    })
+    $("#cate_search_btn").click(function(){
+        $.ajax({
+            url:"/product/cate?keyword="+$("#cate_keyword").val(),
+            type:"get",
+            success:function(r) {
+                console.log(r);
+                $(".search_result ul").html("");
+                for(let i=0; i<r.length; i++) {
+                    // let str_status = "";
+                    // if(r[i].pi_status == 1) str_status = "어떤상태1"
+                    // if(r[i].pi_status == 2) str_status = "어떤상태2"
+                    // if(r[i].pi_status == 3) str_status = "어떤상태3"
+                    let tag = 
+                        '<li>'+
+                            '<a href="#" data-cate-seq="'+r[i].ci_seq+'">'+r[i].ci_name+'</a>'+
+                            // '<span class="status'+r[i].pi_status+'">'+str_status+'</span>'+
+                        '</li>';
+                    $(".search_result ul").append(tag);
+                }
 
+                $(".search_result ul a").click(function(e){
+                    e.preventDefault(); // a태그의 링크 기능 제거
+                    let seq = $(this).attr("data-cate-seq");
+                    let name = $(this).html();
+
+                    $("#product_cate_name").attr("data-cate-seq", seq);
+                    $("#product_cate_name").val(name);
+
+                    $(".search_result ul").html("");
+                    $("#cate_keyword").val("");
+                    $(".category_search").css("display", "");
+                })
+            }
+        })
+    })
     $("#add_pro").click(function(){
         let product_name = $("#product_name").val();
-        let product_cate = $("#product_cate option:selected").val();
+        // let product_cate = $("#product_cate option:selected").val();
         let product_price = $("#product_price").val();
         let product_sub = $("#product_sub").val();
         let product_cnt = $("#product_cnt").val();
@@ -21,7 +64,7 @@ $(function(){
 
         let data = {
             pi_name:product_name,
-            pi_ci_seq:product_cate,
+            // pi_ci_seq:product_cate,
             pi_sub:product_sub,
             pi_price:product_price,
             pi_cnt:product_cnt,

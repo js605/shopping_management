@@ -1,7 +1,9 @@
 package com.shopping.shopping_project.api;
 
+import java.util.List;
 import java.util.Map;
 
+import com.shopping.shopping_project.data.CategoryVO;
 import com.shopping.shopping_project.data.ProductVO;
 import com.shopping.shopping_project.service.ProductService;
 
@@ -35,5 +37,10 @@ public class ProductrAPIController {
     @GetMapping("/product/get")
     public Map<String, Object> getProductInfoBySeq(@RequestParam Integer seq) {
         return service.getProductInfoBySeq(seq);
+    }
+
+    @GetMapping("/product/cate")
+    public List<CategoryVO> getCategoryName(@RequestParam String keyword) {
+        return service.getCategoryName(keyword);
     }
 }

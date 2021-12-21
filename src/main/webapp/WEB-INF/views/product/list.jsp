@@ -104,14 +104,10 @@
                 <p>회원 정보를 입력해주세요</p>
             </div>
             <div class="content_area">
+                <input type="text" id="product_cate_name" placeholder="카테고리" disabled>
+                <button id="search_cate">카테고리 검색</button>
+                <br>
                 <input type="text" id="product_name" placeholder="상품명">
-                <select id="product_cate">
-                    <option value="1">상의</option>
-                    <option value="2">하의</option>
-                    <option value="3">신발</option>
-                    <option value="4">아우터</option>
-                    <option value="5">악세사리</option>
-                </select>
                 <input type="text" id="product_sub" placeholder="상품 설명">
                 <input type="text" id="product_price" placeholder="가격">
                 <input type="text" id="product_cnt" placeholder="재고">
@@ -126,6 +122,20 @@
                 <button id="modify_pro">수정하기</button>
                 <button id="cancel_pro">취소하기</button>
             </div>
+        </div>
+    </div>
+    <div class="category_search">
+        <div class="cate_search_box">
+            <input type="text" id="cate_keyword" placeholder="예) 상의, 하의, 신발">
+            <button id="cate_search_btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="search_result">
+            <ul>
+                
+            </ul>
+        </div>
+        <div class="cate_search_buttons">
+            <button id="cate_search_close">닫기</button>
         </div>
     </div>
 </body>

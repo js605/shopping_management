@@ -1,5 +1,6 @@
 $(function(){
     $(".main_menu a:nth-child(2)").addClass("active")
+    
     $("#add_member").click(function(){
         // alert("학과 추가 팝업 열기");
         $(".popup_wrap").addClass("open");

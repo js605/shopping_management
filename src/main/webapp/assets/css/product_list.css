@@ -19,23 +19,23 @@
 .popup .content_area #teacher_email {width: calc(70% - 10px);}
 .popup .content_area #teacher_status {width: calc(30% - 10px); margin:5px;}
 
-#teacher_status {width: 150px; border-radius: 15px; border: 1px solid #000;
+#category_status {width: 150px; border-radius: 15px; border: 1px solid #000;
     padding: 5px 15px;
 }
 #search_type {border: 0; padding-right: 5px; margin-right: 5px; outline: none;}
-.department_search {position: fixed; z-index: 999999999;
+.category_search {position: fixed; z-index: 999999999;
     background-color: #fff; left: 50%; margin-left: -200px;
     top: 50%; margin-top: -200px; box-shadow:0 0 5px rgba(0, 0, 0, 0.3);
     width: 350px; display: none;
 }
-.dep_search_box {
+.cate_search_box {
     padding:0 10px; font-size: 0; border-bottom: 1px solid #000;
 }
-.dep_search_box * {font-size: 18px;}
-.dep_search_box input {border: 0; padding: 0; margin: 0; outline: none; width: 95%;
+.cate_search_box * {font-size: 18px;}
+.cate_search_box input {border: 0; padding: 0; margin: 0; outline: none; width: 95%;
     padding: 10px 0;
 }
-.dep_search_box button {border: 0; padding: 0; margin: 0; outline: none; cursor: pointer;
+.cate_search_box button {border: 0; padding: 0; margin: 0; outline: none; cursor: pointer;
     position: absolute; right: 10px; top: 10px; background-color: transparent; color: #666;
 }
 .search_result {
@@ -51,8 +51,8 @@
 .search_result .status2 {background-color: rgb(251, 186, 64);}
 .search_result .status3 {background-color: rgb(255, 110, 26);}
 .search_result .status4 {background-color: rgb(255, 23, 23);}
-.dep_search_buttons {text-align: center; padding: 10px; border-top: 1px solid #000;}
-#dep_search_close {border:0; background-color: #666; color: #fff;
+.cate_search_buttons {text-align: center; padding: 10px; border-top: 1px solid #000;}
+#cate_search_close {border:0; background-color: #666; color: #fff;
     border-radius: 3px; width: 80px; height: 30px; cursor: pointer;
 }
 
