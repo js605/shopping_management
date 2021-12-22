@@ -46,8 +46,8 @@ $(function(){
         })
     })
     $("#add_pro").click(function(){
+        let product_cate_name = $("#product_cate_name").attr("data-cate-seq");
         let product_name = $("#product_name").val();
-        // let product_cate = $("#product_cate option:selected").val();
         let product_price = $("#product_price").val();
         let product_sub = $("#product_sub").val();
         let product_cnt = $("#product_cnt").val();
@@ -61,18 +61,17 @@ $(function(){
             alert("상품 설명을 입력해주세요");
             return;
         }
-
         let data = {
+            pi_ci_seq:product_cate_name,
             pi_name:product_name,
-            // pi_ci_seq:product_cate,
             pi_sub:product_sub,
             pi_price:product_price,
             pi_cnt:product_cnt,
             pi_status:product_status
         }
         $.ajax({
-            type:"post",
             url:"/product/add",
+            type:"post",
             data:JSON.stringify(data),
             contentType:"application/json",
             success:function(e) {
@@ -110,23 +109,26 @@ $(function(){
             }
         })
     })
-    let modify_data_seq = 0;
+    let modify_seq = 0;
 
     $(".modify_btn").click(function(){
-        modify_data_seq = $(this).attr("data-seq");
-        $(".popup_wrap").addClass("open");
-        $("#add_pro").css("display", "none");
-        $("#modify_pro").css("display", "inline-block");
-        $(".popup .top_area h2").html("상품 수정");
-        $(".popup .top_area p").html("수정할 내용을 입력해주세요");
+        let seq = $(this).attr("data-seq");
+        modify_seq = seq;
 
         $.ajax({
             type:"get",
-            url:"/product/get?seq="+$(this).attr("data-seq"),
+            url:"/product/get?seq="+seq,
             success:function(r) {
-                console.log(r);
+                console.log(r)
+                $(".popup_wrap").css("display", "block");
+                $("#add_pro").css("display", "none");
+                $("#modify_pro").css("display", "inline-block");
+                $(".popup .top_area h2").html("상품 수정");
+                $(".popup .top_area p").html("수정할 내용을 입력해주세요");
+
+                $("#product_cate_name").attr("data-cate-seq", r.data.pi_ci_seq);
+                $("#product_cate_name").val(r.data.category_name);
                 $("#product_name").val(r.data.pi_name);
-                $("#product_cate").val(r.data.pi_ci_seq);
                 $("#product_sub").val(r.data.pi_sub);
                 $("#product_price").val(r.data.pi_price);
                 $("#product_cnt").val(r.data.pi_cnt);
@@ -136,20 +138,19 @@ $(function(){
     })
 
     $("#modify_pro").click(function(){
-        // alert(modify_data_seq)
         if(confirm("수정하시겠습니까?") == false) return;
 
         let product_name = $("#product_name").val();
-        let product_cate = $("#product_cate").val();
+        let product_cate_name = $("#product_cate_name").attr("data-cate-seq");
         let product_sub = $("#product_sub").val();
         let product_price = $("#product_price").val();
         let product_cnt = $("#product_cnt").val();
         let product_status = $("#product_status option:selected").val();
 
         let data = {
-            pi_seq:modify_data_seq,
+            pi_seq:modify_seq,
             pi_name:product_name,
-            pi_ci_seq:product_cate,
+            pi_ci_seq:product_cate_name,
             pi_sub:product_sub,
             pi_price:product_price,
             pi_cnt:product_cnt,
@@ -170,13 +171,13 @@ $(function(){
     $("#cancel_pro").click(function(){
         if(confirm("취소하시겠습니까?\n(입력된 내용은 저장되지 않습니다.)") == false) return;
 
+        $("#product_cate_name").attr("data-cate-seq", "");
+        $("#product_cate_name").val("");
         $("#product_name").val("");
         $("#product_sub").val("");
         $("#product_price").val("");
         $("#product_cnt").val("");
         $("#product_status").val("1").prop("selected", true);
-        $("#product_cate").val("1").prop("selected", true);
-
         $(".popup_wrap").css("display", "");
     })
 })

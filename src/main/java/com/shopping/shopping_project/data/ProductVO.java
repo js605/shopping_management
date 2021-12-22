@@ -17,4 +17,8 @@ public class ProductVO {
     private Date pi_mod_dt;
 
     private String category_name;
+
+    public String makeHistoryStr() {
+        return pi_ci_seq+"|"+pi_name+"|"+pi_price+"|"+pi_status+"|"+pi_cnt;
+    }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.shopping.shopping_project.data.CategoryVO;
+import com.shopping.shopping_project.data.ProductHistoryVO;
 import com.shopping.shopping_project.data.ProductVO;
 import com.shopping.shopping_project.mapper.ProductMapper;
 
@@ -35,7 +36,16 @@ public class ProductService {
             resultMap.put("message", "가격을 입력해주세요.");
             return resultMap;
         }
+
         mapper.addProductInfo(data);
+
+        ProductHistoryVO history = new ProductHistoryVO();
+        history.setPih_type("new");
+        history.setPih_content(data.makeHistoryStr());
+        Integer recent_seq = mapper.getRecentAddedProductSeq();
+        history.setPih_pi_seq(recent_seq);
+
+        mapper.insertProductHistory(history);
 
         resultMap.put("status", true);
         resultMap.put("message", "상품이 추가되었습니다.");
@@ -76,6 +86,11 @@ public class ProductService {
         resultMap.put("status", true);
         resultMap.put("message", "상품이 삭제되었습니다.");
 
+        ProductHistoryVO history = new ProductHistoryVO();
+            history.setPih_type("delete");
+            history.setPih_pi_seq(seq);
+            mapper.insertProductHistory(history);
+
         return resultMap;
     }
 
@@ -86,6 +101,12 @@ public class ProductService {
 
         resultMap.put("status", true);
         resultMap.put("message", "수정되었습니다.");
+
+        ProductHistoryVO history = new ProductHistoryVO();
+        history.setPih_type("modify");
+        history.setPih_content(data.makeHistoryStr());
+        history.setPih_pi_seq(data.getPi_ci_seq());
+        mapper.insertProductHistory(history);
 
         return resultMap;
     }

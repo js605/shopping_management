@@ -7,6 +7,7 @@ import java.util.Map;
 import com.shopping.shopping_project.data.MemberHistoryVO;
 import com.shopping.shopping_project.data.MemberVO;
 import com.shopping.shopping_project.mapper.MemberMapper;
+import com.shopping.shopping_project.utils.AESAlgorithm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class MemberService {
         resultMap.put("list", list);
         return resultMap;
     }
-    public Map<String, Object> addMember(MemberVO data) {
+    public Map<String, Object> addMember(MemberVO data) throws Exception {
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 
         if(data.getMi_name() == null || data.getMi_name().equals("")) {
@@ -73,9 +74,12 @@ public class MemberService {
             resultMap.put("message", "비밀번호을 입력하세요.");
             return resultMap;
         }
+
+        String pwd = data.getMi_pwd();
+        String encrypted = AESAlgorithm.Encrypt(pwd);
+        data.setMi_pwd(encrypted);
+
         mapper.addMember(data);
-        resultMap.put("status", true);
-        resultMap.put("message", "회원이 추가되었습니다.");
 
         Integer seq = mapper.selectLatestDateSeq();
         MemberHistoryVO history = new MemberHistoryVO();
@@ -83,7 +87,11 @@ public class MemberService {
         history.setMemh_type("new");
         String content = data.getMi_name()+"|"+data.getMi_birth()+"|"+data.getMi_phone_num()+"|"+data.getMi_id()+"|"+data.getMi_status();
         history.setMemh_content(content);
+
         mapper.insertMemberHistory(history);
+
+        resultMap.put("status", true);
+        resultMap.put("message", "회원이 추가되었습니다.");
 
         return resultMap;
     }

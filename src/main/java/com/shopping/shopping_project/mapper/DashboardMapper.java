@@ -1,5 +1,7 @@
 package com.shopping.shopping_project.mapper;
 
+import java.util.Date;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -23,4 +25,7 @@ public interface DashboardMapper {
     public Integer getTotalQuestionsCnt();
     public Integer getWaitQuestionsCnt();
     public Integer getDoneQuestionsCnt();
+
+    public Date getMemberUpdateDate();
+    public Date getProductUpdateDate();
 }

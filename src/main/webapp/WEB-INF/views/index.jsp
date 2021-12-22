@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,14 +27,14 @@
                 <p>일반 회원 : <span>${cnt.member[1]}명</span></p>
                 <p>VIP 회원 : <span>${cnt.member[2]}명</span></p>
                 <p>탈퇴 대기 : <span>${cnt.member[3]}명</span></p>
-                <p><i class="far fa-clock"></i> 업데이트 날짜 : <span>2021-12-10 12:00:00</span></p>
+                <p><i class="far fa-clock"></i> 업데이트 날짜 : <span><fmt:formatDate value="${update.member}" pattern="yyyy-MM-dd HH:mm:ss"/></span></p>
             </div>
             <div class="product_info">
                 <h2><i class="fas fa-shopping-cart"></i> 상품 관리</h2>
                 <p>총 상품 수 : <span>${cnt.product[0]}개</span></p>
                 <p>판매 중 상품 : <span>${cnt.product[1]}개</span></p>
                 <p>품절 임박 : <span>${cnt.product[2]}개</span></p>
-                <p><i class="far fa-clock"></i> 업데이트 날짜 : <span>2021-12-10 12:00:00</span></p>
+                <p><i class="far fa-clock"></i> 업데이트 날짜 : <span><fmt:formatDate value="${update.product}" pattern="yyyy-MM-dd HH:mm:ss"/></span></p>
             </div>
             <div class="review_info">
                 <h2><i class="fas fa-thumbs-up"></i> 리뷰 관리</h2>

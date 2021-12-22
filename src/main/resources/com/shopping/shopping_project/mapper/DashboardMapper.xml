@@ -12,7 +12,7 @@
         select count(*) from member_info where mi_status=2
     </select>
     <select id="getWaitMemberCnt" resultType="java.lang.Integer">
-        select count(*) from member_info where mi_status=0
+        select count(*) from member_info where mi_status=3
     </select>
 
     <select id="getTotalProductCnt" resultType="java.lang.Integer">
@@ -52,5 +52,11 @@
     </select>
     <select id="getDoneQuestionsCnt" resultType="java.lang.Integer">
         select count(*) from questions_info where qi_status=1
+    </select>
+    <select id="getMemberUpdateDate" resultType="java.util.Date">
+        select memh_reg_dt from member_history order by memh_reg_dt desc limit 1
+    </select>
+    <select id="getProductUpdateDate" resultType="java.util.Date">
+        select pih_reg_dt from product_info_history order by pih_reg_dt desc limit 1
     </select>
 </mapper>

@@ -19,7 +19,7 @@ public class MemberAPIController {
     @Autowired MemberService service;
 
     @PostMapping("/member/add")
-    public Map<String, Object> postDepartmentAdd(@RequestBody MemberVO data) {
+    public Map<String, Object> postMemberAdd(@RequestBody MemberVO data) throws Exception {
         return service.addMember(data);
     }
     @DeleteMapping("/member/delete")

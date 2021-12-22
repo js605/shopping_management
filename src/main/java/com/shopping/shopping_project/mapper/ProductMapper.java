@@ -3,6 +3,7 @@ package com.shopping.shopping_project.mapper;
 import java.util.List;
 
 import com.shopping.shopping_project.data.CategoryVO;
+import com.shopping.shopping_project.data.ProductHistoryVO;
 import com.shopping.shopping_project.data.ProductVO;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -22,4 +23,8 @@ public interface ProductMapper {
     public ProductVO getProductInfoBySeq(Integer seq);
 
     public List<CategoryVO> getCategoryName(String keyword);
+
+    public void insertProductHistory(ProductHistoryVO data);
+
+    public Integer getRecentAddedProductSeq();
 }

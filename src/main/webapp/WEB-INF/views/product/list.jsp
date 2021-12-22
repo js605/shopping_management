@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,8 +73,8 @@
                                         <span style="background-color:rgb(255, 23, 23)">품절</span>
                                     </c:if>
                                 </td>
-                                <td>${p.pi_reg_dt}</td>
-                                <td>${p.pi_mod_dt}</td>
+                                <td><fmt:formatDate value="${p.pi_reg_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td><fmt:formatDate value="${p.pi_mod_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
                                     <button class="modify_btn" data-seq="${p.pi_seq}"><i class="far fa-pencil-alt"></i></button>
                                     <button class="delete_btn" data-seq="${p.pi_seq}"><i class="fas fa-minus-circle"></i></button>
@@ -87,7 +88,8 @@
                 <button id="prev"><i class="fas fa-chevron-left"></i></button>
                 <div class="pagers">
                     <c:forEach begin="1" end="${data.pageCnt}" var="i">
-                        <a href="/product?offset=${(i-1)*10}&keyword=${data.keyword}">${i}</a>
+                        <!-- <a href="/product?offset=${(i-1)*10}&keyword=${data.keyword}">${i}</a> -->
+                        <a href="/product?offset=${(i-1)*10}&type=${data.type}&keyword=${data.keyword}">${i}</a>
                     </c:forEach>
                 </div>
                 <button id="next"><i class="fas fa-chevron-right"></i></button>

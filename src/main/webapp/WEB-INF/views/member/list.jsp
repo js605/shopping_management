@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,8 +59,8 @@
                                 <!-- <c:if test="${m.mi_status == 0}">일반 회원</c:if>
                                 <c:if test="${m.mi_status == 1}">VIP 회원</c:if>
                                 <c:if test="${m.mi_status == 2}">탈퇴 대기</c:if> -->
-                                <td>${m.mi_reg_dt}</td>
-                                <td>${m.mi_mod_dt}</td>
+                                <td><fmt:formatDate value="${m.mi_reg_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td><fmt:formatDate value="${m.mi_mod_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
                                     <button class="modify_btn" data-seq="${m.mi_seq}"><i class="far fa-pencil-alt"></i></button>
                                     <button class="delete_btn" data-seq="${m.mi_seq}"><i class="fas fa-minus-circle"></i></button>

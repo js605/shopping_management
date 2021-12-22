@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shopping.shopping_project.mapper.ProductMapper">
     <insert id="addProductInfo">
-        INSERT INTO shopping_mall_db.product_info
+        INSERT INTO product_info
         (pi_name, pi_ci_seq, pi_sub, pi_price, pi_status, pi_cnt)
         VALUES
         (#{pi_name}, #{pi_ci_seq}, #{pi_sub}, #{pi_price}, #{pi_status}, #{pi_cnt});
@@ -42,14 +42,31 @@
         delete from product_info where pi_seq = #{seq}
     </delete>
     <update id="updateProduct">
-        update product_info 
+        update product_info
         set pi_ci_seq=#{pi_ci_seq}, pi_name=#{pi_name}, pi_sub=#{pi_sub}, pi_price=#{pi_price}, pi_cnt=#{pi_cnt}, pi_status=#{pi_status}, pi_mod_dt=NOW()
         where pi_seq=#{pi_seq}
     </update>
     <select id="getProductInfoBySeq" resultType="com.shopping.shopping_project.data.ProductVO">
-        select * from product_info where pi_seq = #{seq}
+        select 
+            pi_seq, pi_ci_seq, pi_sub, pi_name, pi_price, 
+            pi_cnt, pi_status, ci_name as category_name
+        from
+            product_info a left outer join category_info b 
+        on 
+            a.pi_ci_seq = b.ci_seq
+        where 
+            pi_seq = #{seq}
     </select>
     <select id="getCategoryName" resultType="com.shopping.shopping_project.data.CategoryVO">
-        select ci_name from category_info where ci_name like #{keyword}
+        select ci_seq, ci_name from category_info where ci_name like #{keyword}
+    </select>
+    <insert id="insertProductHistory">
+        INSERT INTO product_info_history
+        (pih_pi_seq, pih_type, pih_content) 
+        VALUES
+        (#{pih_pi_seq}, #{pih_type}, #{pih_content});
+    </insert>
+    <select id="getRecentAddedProductSeq" resultType="java.lang.Integer">
+        select pi_seq from product_info order by pi_seq desc limit 1
     </select>
 </mapper>
