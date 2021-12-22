@@ -55,10 +55,17 @@
                                 <td>${m.mi_phone_num}</td>
                                 <td>${m.mi_id}</td>
                                 <td>********</td>
-                                <td>${m.mi_status}</td>
-                                <!-- <c:if test="${m.mi_status == 0}">일반 회원</c:if>
-                                <c:if test="${m.mi_status == 1}">VIP 회원</c:if>
-                                <c:if test="${m.mi_status == 2}">탈퇴 대기</c:if> -->
+                                <td class="member_status">
+                                    <c:if test="${m.mi_status == 1}">
+                                        <span style="background-color:rgb(17, 226, 27)">일반 회원</span>
+                                    </c:if>
+                                    <c:if test="${m.mi_status == 2}">
+                                        <span style="background-color:rgb(255, 110, 26)">VIP</span>
+                                    </c:if>
+                                    <c:if test="${m.mi_status == 3}">
+                                        <span style="background-color:rgb(255, 23, 23)">탈퇴 대기</span>
+                                    </c:if>
+                                </td>
                                 <td><fmt:formatDate value="${m.mi_reg_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td><fmt:formatDate value="${m.mi_mod_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>

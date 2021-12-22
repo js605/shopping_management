@@ -72,7 +72,6 @@
                                     <c:if test="${p.pi_status == 3}">
                                         <span style="background-color:rgb(255, 23, 23)">품절</span>
                                     </c:if>
-                                </td>
                                 <td><fmt:formatDate value="${p.pi_reg_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td><fmt:formatDate value="${p.pi_mod_dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
