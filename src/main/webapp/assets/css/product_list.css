@@ -14,8 +14,8 @@
     border-radius: 15px; margin-bottom: 10px; outline: none; margin: 5px;
 }
 
-.popup .content_area #product_cate_name {width: calc(70% - 10px);}
-.popup .content_area #search_pro {width: calc(30% - 10px);}
+.popup .content_area #product_cate_name {width: calc(50% - 10px);}
+.popup .content_area #search_pro {width: calc(20% - 10px);}
 .popup .content_area #product_status {width: calc(30% - 10px); margin:5px;}
 
 #product_status {width: 150px; border-radius: 15px; border: 1px solid #000;

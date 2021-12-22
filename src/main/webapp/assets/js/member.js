@@ -84,7 +84,7 @@ $(function(){
                 $("#mem_birth").val(r.data.mi_birth);
                 $("#mem_phone_num").val(r.data.mi_phone_num);
                 $("#mem_id").val(r.data.mi_id);
-                $("#mem_pwd").val(r.data.mi_pwd);
+                $("#mem_pwd").val("********").prop("disabled", true);
                 $("#mem_status").val(r.data.mi_status).prop("selected", true);
             }
         })
