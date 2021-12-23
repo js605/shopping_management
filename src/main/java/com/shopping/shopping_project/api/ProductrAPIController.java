@@ -8,6 +8,7 @@ import com.shopping.shopping_project.data.ProductVO;
 import com.shopping.shopping_project.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,7 +26,7 @@ public class ProductrAPIController {
     }
 
     @DeleteMapping("/product/delete")
-    public Map<String, Object> deleteProduct(@RequestParam Integer seq) {
+    public ResponseEntity <Map<String, Object>> deleteProduct(@RequestParam Integer seq) {
         return service.deleteProduct(seq);
     }
 

@@ -69,4 +69,7 @@
     <select id="getRecentAddedProductSeq" resultType="java.lang.Integer">
         select pi_seq from product_info order by pi_seq desc limit 1
     </select>
+    <select id="isExistProduct" resultType="java.lang.Integer">
+        select count(*) from product_info where pi_seq = #{seq}
+    </select>
 </mapper>

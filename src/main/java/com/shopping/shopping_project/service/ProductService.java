@@ -10,6 +10,8 @@ import com.shopping.shopping_project.data.ProductVO;
 import com.shopping.shopping_project.mapper.ProductMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -80,18 +82,25 @@ public class ProductService {
         return resultMap;
     }
 
-    public Map<String, Object> deleteProduct(Integer seq) {
+    public ResponseEntity <Map<String, Object>> deleteProduct(Integer seq) {
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
-        mapper.deleteProduct(seq);
-        resultMap.put("status", true);
-        resultMap.put("message", "상품이 삭제되었습니다.");
+        Integer cnt = mapper.isExistProduct(seq);
+        if(cnt == 0){
+            resultMap.put("status", false);
+            resultMap.put("message", "삭제에 실패하였습니다. (존재하지 않는 상품 번호)");
+            return new ResponseEntity <Map<String, Object>>(resultMap, HttpStatus.BAD_REQUEST);
+        }
+        else {
+            mapper.deleteProduct(seq);
+            resultMap.put("status", true);
+            resultMap.put("message", "상품이 삭제되었습니다.");
 
-        ProductHistoryVO history = new ProductHistoryVO();
+            ProductHistoryVO history = new ProductHistoryVO();
             history.setPih_type("delete");
             history.setPih_pi_seq(seq);
             mapper.insertProductHistory(history);
-
-        return resultMap;
+            return new ResponseEntity <Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
+        }
     }
 
     public Map<String, Object> updateProductInfo(ProductVO data) {
